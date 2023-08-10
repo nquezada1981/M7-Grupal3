@@ -4,7 +4,7 @@ import {pool} from './connection.js';
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use (express.static('public'));
 
 app.get('/', (req, res) => {
@@ -37,5 +37,24 @@ app.post ('/usuario', async (req, res) => {
     }
     
 });
+
+app.post ('/login', async (req, res) => {
+    try {
+        const email = req.body.loginEmail;
+        const password = req.body.loginPassword;
+        const usuario = await pool.query('SELECT * FROM usuarios WHERE email = $1 AND password = $2', [email, password]);
+        if (usuario.rowCount > 0){ 
+            console.log("Usuario encontrado");
+            res.json(usuario.rows);
+        } else {
+            res.status(404).send('Usuario no encontrado');
+        }
+        
+    } catch (error){
+        console.log(error);
+    } finally{
+        pool.release;
+    }
+})
 
 app.listen(3000,()=>console.log("Servidor corriendo en puerto 3000"));
