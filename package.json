@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "hb": "^0.0.0",
+    "pg": "^8.11.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "m7-grupal3",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
