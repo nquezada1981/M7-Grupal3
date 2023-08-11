@@ -42,14 +42,14 @@
           <p id="creado" class="bg-success text-white p-3 d-none">
             Usuario creado con éxito &#128131;
           </p>
-        </form action: "/login" method="post">
+        </form>
       </div>
       <div class="col-4 offset-4">
-        <form>
+        <form action: "/login" method="post">
           <div class="form-group">
             <h5>Iniciar sesión</h5>
 
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="loginEmail">Email address</label>
             <input
               type="email"
               class="form-control"
@@ -59,7 +59,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="loginPassword">Password</label>
             <input
               type="password"
               class="form-control"
@@ -143,10 +143,7 @@
       let email = $("form:last input:first").val();
       let password = $("form:last input:last").val();
       try {
-        const { data } = await axios.post("http://localhost:3000/login", {
-          email,
-          password,
-        });
+        const { data } = await axios.post("http://localhost:3000/login", {email,password,});
         $("#User").addClass("d-none");
         $("#user").removeClass("d-none");
       } catch (e) {
